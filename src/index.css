@@ -10,6 +10,13 @@ body {
 
 .link {
   cursor: pointer;
+  color: white
+}
+
+.link-icon {
+  color: #025aa5;
+  font-size: 15px;
+  margin-left: 5px;
 }
 
 .btn_submit {

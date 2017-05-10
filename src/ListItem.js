@@ -15,13 +15,20 @@ class ListItem extends Component {
     render() {
         return <li>
             <span>{this.props.task}</span>
+
+            <Link  className="link"
+                   title="edit"
+                   to={{ pathname: `edit/${this.props.id}`, state: { id: this.props.id, task: this.props.task } }}>
+                <i className="fa fa-pencil link-icon" aria-hidden="true"></i>
+            </Link>
+
             <a
                 className="link"
                 title="Delete"
-                onClick={this.handleClickDelete}> ×
-            </a>
+                onClick={this.handleClickDelete}>
+                <i className="fa fa-times link-icon" aria-hidden="true"></i>
 
-            <Link to={{ pathname: `edit/${this.props.id}`, state: { id: this.props.id, task: this.props.task } }}>edit</Link>
+            </a>
         </li>
     }
 }
