@@ -5,19 +5,24 @@ class TodoList extends Component {
     constructor(props) {
         super(props);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
+        this.handleCompleteTask = this.handleCompleteTask.bind(this);
     }
 
     handleDeleteTask(id) {
         this.props.onDeleteTask(id);
     }
 
+    handleCompleteTask(id) {
+        this.props.onCompleteTask(id);
+    }
+
     render() {
         const listItems = this.props.todos.map((todo) =>
             <ListItem
                 key={todo.id}
-                id={todo.id}
-                task={todo.task}
+                todo={todo}
                 onDeleteTask={this.handleDeleteTask}
+                onCompleteTask={this.handleCompleteTask}
             />);
         return (
             <ul>

@@ -12,12 +12,13 @@ class App extends Component {
         this.handleAddTask = this.handleAddTask.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
         this.handleSaveItem = this.handleSaveItem.bind(this);
+        this.handleCompleteTask = this.handleCompleteTask.bind(this);
     }
 
     handleAddTask(task) {
         const todos = this.state.todos;
         const newId = Utils.generateNextId(todos.map((item) => item.id));
-        this.setState({todos: todos.concat({id: newId, task})});
+        this.setState({todos: todos.concat({id: newId, task, done: false})});
     }
 
     handleDeleteTask(id) {
@@ -28,9 +29,16 @@ class App extends Component {
 
     handleSaveItem(id, value) {
         let todos = this.state.todos;
-        let index = todos.findIndex(x => String(x.id) === String(id));
+        let index = todos.findIndex(task => String(task.id) === String(id));
         todos[index].task = value;
         this.setState({todos});
+    }
+
+    handleCompleteTask(id) {
+        let todos = this.state.todos;
+        todos.find(task => task.id === id).done = true;
+        this.setState({todos});
+        console.log(this.state.todos);
     }
 
     render() {
@@ -44,6 +52,7 @@ class App extends Component {
                                 todos={this.state.todos}
                                 onDeleteTask={this.handleDeleteTask}
                                 onAddTask={this.handleAddTask}
+                                onCompleteTask={this.handleCompleteTask}
                              />)
                              }
                         />}
@@ -58,8 +67,8 @@ class App extends Component {
 }
 
 let TODOS = [
-    { id: 1, task: "do smth" },
-    { id: 2, task: "go for a walk" }
+    { id: 1, task: "do smth", done: false },
+    { id: 2, task: "go for a walk", done: false }
 ];
 
 export default App;

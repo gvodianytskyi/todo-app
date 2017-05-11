@@ -25,3 +25,10 @@ body {
   width: 100px;
 }
 
+.todo__task_crossed {
+  text-decoration: line-through;
+}
+
+.todo__task_regular {
+
+}

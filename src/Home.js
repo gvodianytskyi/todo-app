@@ -7,6 +7,7 @@ class Home extends Component{
         super(props);
         this.handleAddTask = this.handleAddTask.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
+        this.handleCompleteTask = this.handleCompleteTask.bind(this);
     }
 
     handleAddTask(task) {
@@ -17,6 +18,10 @@ class Home extends Component{
         this.props.onDeleteTask(id);
     }
 
+    handleCompleteTask(id) {
+        this.props.onCompleteTask(id);
+    }
+    
     render() {
         return (
             <div>
@@ -24,7 +29,8 @@ class Home extends Component{
                     onAddTask={this.handleAddTask}/>
                 <TodoList
                     todos={this.props.todos}
-                    onDeleteTask={this.handleDeleteTask}/>
+                    onDeleteTask={this.handleDeleteTask}
+                    onCompleteTask={this.handleCompleteTask}/>
             </div>
         );
     }
